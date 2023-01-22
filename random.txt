@@ -1,0 +1,30 @@
+{
+    "payment": {
+        "paymentValueDate": "2022-03-20",
+        "paymentAmount": {
+            "magnitude": 18348,
+            "currency": "INR"
+        },
+        "tds": {
+            "magnitude": 5043,
+            "currency": "INR"
+        },
+        "instrument": "CASH",
+        "reference": null,
+        "tdsRate": "13",
+        "branchCode": "HO"
+    },
+    "invoicePayments": [
+        {
+            "invoiceNumber": "INV/2022-2023/00340",
+            "invoicePayment": {
+                "currency": "INR",
+                "magnitude": 18348
+            },
+            "invoiceTds": {
+                "currency": "INR",
+                "magnitude": 5043
+            }
+        }
+    ]
+}

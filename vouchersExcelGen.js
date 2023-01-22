@@ -49,7 +49,7 @@ function writeExcelSheet(data){
     const ws = XLSX.utils.json_to_sheet(data)
     const wb = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(wb, ws, 'Responses')
-    XLSX.writeFile(wb, 'output/excel-sheets/PurchaseSaleInvoice.xlsx')
+    XLSX.writeFile(wb, 'output/excel-sheets/Vouchers.xlsx')
 }
 function capitalizeFirstLetter(strToCapitalize) {
     return strToCapitalize[0].toUpperCase() + strToCapitalize.slice(1);
@@ -60,75 +60,25 @@ function separateCharactersUponUppercase(strInput, firstCap) {
     }
     return strInput.split(/(?=[A-Z])/).join(" ");
 }
+const randomData = ()=>({
+  "Voucher Type":getRandomFromArray(["JOURNAL","PAYMENT","RECEIPT","CONTRA"]),
+  "Value Date":getRandomDate(),
+  "Description":makeid(12),
+  "Amount":getRandomNum(5),
+  "Currency":getRandomFromArray(["INR"]),
+  "Credit Account Code": "ALLAHABADBANK",
+  "Credit Branch Code": getRandomFromArray(["ABR"]),
+  "Debit Account Code": "ALLAHABADBANK",
+  "Debit Branch Code":getRandomFromArray(["HO"]),
+  "Reference": lorem.generateWords(2),
+  "Voucher Number":getRandomNum(10),
+  "Transaction Id":makeid(8),
+  "Transaction Lot Id": makeid(12)
+})
 
 
-const randomData=  () => {
-    const itemQuantity = getRandomNum(2)
-    const itemRate =  getRandomNum(3)
-    const itemAmount = itemQuantity * itemRate;
-    const itemSurcharge = getRandomNum(4);
-    const rd = getRandomDate();
-   return  {
-    branchCode : getRandomFromArray(["HO"]),
-    transactionType: getRandomFromArray(["PURCHASE_INVOICE"]),
-    transactionId: makeid(10),
-    transactionLotId:makeid(11),
-    emailId: makeid(6)+'@gmail.com',
-    pan: generateRandomPan(),
-    gstin: makeid(10),
-    locationCode :getRandomFromArray(["sg"]),
-    valueDate :rd,
-    dueDate :rd,
-    description : lorem.generateWords(4),
-    purchaseOrderNumber : getRandomNum(12),
-    purchaseOrderDate:rd,
-    purchaseOrderDescription: lorem.generateWords(10),  
-    amount:itemSurcharge+itemAmount,
-    currency: getRandomFromArray(['INR']),
-    surcharge: getRandomNum(2),
-    firstName: randomName(),
-    middleName: getRandomNum(2),
-    lastName: makeid(2),
-    address1:  makeid(3)+lorem.generateWords(3),
-    address2: makeid(2)+lorem.generateWords(4),
-    address3: makeid(4)+lorem.generateWords(2),
-    cityCode: "212",
-    districtCode: "212",
-    stateCode: "96",
-    phone1: getRandomNum(10), 
-    phone2: getRandomNum(10),
-    tdsSection: makeid(8),
-    linkedInvoiceNumber: getRandomNum(5),
-    reference: makeid(20),
-    itemAccountCode: "PuSaTdsPay",
-    itemDescription: lorem.generateSentences(1), 
-    itemQuantity: itemQuantity,
-    itemRate:itemRate,
-    itemAmount: itemAmount ,
-    itemSurcharge:itemSurcharge ,
-    countryCode: "USA",
-    pinCode: getRandomNum(6),
-    taxMode: getRandomFromArray(["EXCLUSIVE","INCLUSIVE"]),
-    terms: getRandomFromArray(["NET_15","NET_30","NET_60","NET_90"]),
-    itemTaxRate: Math.random(),
-    customerId:getRandomFromArray(['1119000002']),
-    // payments
-    paymentValueDate:rd,
-    paymentAmount:itemSurcharge+itemAmount,
-    paymentCurrency:"INR",
-    paymentTds: "0",
-    paymentInstrument: "CASH",
-    paymentReference: lorem.generateSentences(1),
-    paymentTdsRate: "0",
-    paymentBranchCode: "HO"
-
-}}
-// for(const i in randomData){
-//     console.log(i,randomData[i])
-// }
-// let arr =[];
 let arr = []
-let max = 2
+let max = 10
 for(let i=0;i<max;i++){
     arr.push(randomData())
 }
@@ -145,3 +95,5 @@ writeExcelSheet(arr);
 // });
 
 // bc=["001", 106, 111, 1188, 123, 888, 932, "ABR", "BLR", "BSG", "CHN", "HO", "KLK", "KRG", "NEWB", "PRT", "SLN", "SLS", "TVL", "TVM", "VLR"]'INR',
+
+
